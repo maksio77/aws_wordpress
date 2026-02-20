@@ -43,6 +43,18 @@ resource "aws_lb_target_group" "web_app_target_group" {
   protocol = "HTTP"
   vpc_id   = aws_vpc.web_app_vpc.id
 
+  health_check {
+    enabled             = true
+    path                = "/"
+    port                = "traffic-port"
+    protocol            = "HTTP"
+    healthy_threshold   = 3
+    unhealthy_threshold = 3
+    timeout             = 6
+    interval            = 30
+    matcher             = "200-399"
+  }
+
   tags = {
     Name = "web_app_target_group"
   }

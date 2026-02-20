@@ -27,8 +27,9 @@ resource "aws_subnet" "public_subnet_b" {
 }
 
 resource "aws_subnet" "private_subnet_a" {
-  vpc_id     = aws_vpc.web_app_vpc.id
-  cidr_block = "10.0.3.0/24"
+  vpc_id            = aws_vpc.web_app_vpc.id
+  cidr_block        = "10.0.3.0/24"
+  availability_zone = "${var.aws_region}a"
 
   tags = {
     Name = "private_subnet_a"
@@ -36,8 +37,9 @@ resource "aws_subnet" "private_subnet_a" {
 }
 
 resource "aws_subnet" "private_subnet_b" {
-  vpc_id     = aws_vpc.web_app_vpc.id
-  cidr_block = "10.0.4.0/24"
+  vpc_id            = aws_vpc.web_app_vpc.id
+  cidr_block        = "10.0.4.0/24"
+  availability_zone = "${var.aws_region}b"
 
   tags = {
     Name = "private_subnet_b"
