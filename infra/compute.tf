@@ -18,6 +18,8 @@ resource "aws_instance" "web_server" {
   security_groups             = [aws_security_group.ec2_sg.id]
   associate_public_ip_address = true
 
+  user_data = templatefile("${path.module}/templates/install_wp.sh", {})
+
   tags = {
     Name = "web_server"
   }
