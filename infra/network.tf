@@ -55,7 +55,7 @@ resource "aws_internet_gateway_attachment" "igw_attachment" {
 
 resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.web_app_vpc.id
-  route = {
+  route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
   }
